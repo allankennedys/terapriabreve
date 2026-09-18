@@ -1,6 +1,5 @@
 # Mídia bruta e material de trabalho — não versionar.
 # Os originais ficam em ~/terapiabreve-midia-original/
-/videos/
 /videos-originais-mp4/
 *.zip
 *.mov
