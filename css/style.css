@@ -31,3 +31,41 @@
 @media (min-width:768px){.play-btn,.play-pulse{width:86px;height:86px}.play-label{font-size:15px}}
 @keyframes play-pulse{0%{transform:scale(1);opacity:.85}70%,100%{transform:scale(1.75);opacity:0}}
 @media (prefers-reduced-motion:reduce){.play-pulse{animation:none;opacity:.5}}
+
+/* CTA em destaque: cor + halo pulsante na borda.
+   A paleta ativa vive nas vars de .cta-destaque (hoje: verde vivo, escolha
+   final do cliente). Variante anterior guardada abaixo: acrescente a classe
+   "cta-destaque--laranja" ao lado de "cta-destaque" no HTML para testa-la,
+   ou copie as 5 vars dela para dentro de .cta-destaque para trocar de vez. */
+.cta-destaque{
+  --cta-a:#15803D;            /* inicio do gradiente */
+  --cta-b:#22C55E;            /* fim do gradiente */
+  --cta-borda:#14532D;
+  --cta-sombra:20,83,45;      /* rgb da sombra de apoio */
+  --cta-glow:34,197,94;       /* rgb do halo pulsante */
+  background-image:linear-gradient(333deg, var(--cta-a) 0%, var(--cta-b) 100%)!important;
+  border-bottom:2px solid var(--cta-borda)!important;
+  box-shadow:0 2px 5px 0 rgba(var(--cta-sombra),.45), 0 0 0 0 rgba(var(--cta-glow),.65);
+  animation:cta-pulse 1.8s ease-out infinite;
+  will-change:box-shadow;
+}
+/* Variante guardada: laranja terracota */
+.cta-destaque--laranja{
+  --cta-a:#C2410C;
+  --cta-b:#F59E0B;
+  --cta-borda:#9A3412;
+  --cta-sombra:154,52,18;
+  --cta-glow:245,158,11;
+}
+.cta-destaque:hover{
+  filter:saturate(1.15) brightness(.92);
+  animation-play-state:paused;
+}
+@keyframes cta-pulse{
+  0%{box-shadow:0 2px 5px 0 rgba(var(--cta-sombra),.45), 0 0 0 0 rgba(var(--cta-glow),.65)}
+  70%{box-shadow:0 2px 5px 0 rgba(var(--cta-sombra),.45), 0 0 0 14px rgba(var(--cta-glow),0)}
+  100%{box-shadow:0 2px 5px 0 rgba(var(--cta-sombra),.45), 0 0 0 0 rgba(var(--cta-glow),0)}
+}
+@media (prefers-reduced-motion:reduce){
+  .cta-destaque{animation:none;box-shadow:0 2px 5px 0 rgba(var(--cta-sombra),.45), 0 0 0 6px rgba(var(--cta-glow),.35)!important}
+}
